@@ -6,6 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9</title>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "07ebed51efe04167b1875e84e637cf56",
+      application: "randomname"
+    });
+  </script>
 
   <style>
     button {
@@ -88,6 +95,14 @@
   </main>
 
   <script>
+    console.log("Anlisa's email username? anl084, homework start");
+    window.onerror = function(message, url, line, col, error) {
+      console.group("GlobalErrorCatcher");
+      console.log(`${message}\n At ${line}:${col} of ${url}`);
+      console.groupEnd();
+    };
+    
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -118,6 +133,8 @@
     let startTimerBtn = errorBtns[11];
     let endTimerBtn = errorBtns[12];
     let traceBtn = errorBtns[13];
+    let globalErrorBtn = errorBtns[14];
+
 
     logBtn.addEventListener("click", ()=>{
       console.log("you clicked ont the console log button");
@@ -167,6 +184,35 @@
     traceBtn.addEventListener("click",()=>{
       console.trace("trace here"); //mesage needed here, for trace btn to work
     });
+    globalErrorBtn.addEventListener("click", ()=>{
+      nonexistentfunction();
+    });
+
+    class DivisionError extends Error {
+      constructor(message) {
+        super(message); // (1)
+        this.name = "DivisionError"; // (2)
+      }
+    }
+
+    try{
+      let a1 = 99/0;
+      let b1 = 0;
+      let b2 = 1;
+      if(b1 == 0){
+        throw new DivisionError("There cant be 0s for division");
+      }
+    }
+    catch(error){
+      console.group("ErrorHere")
+      console.log(error.name, "\n", error.message);
+      console.log(error.stack);
+      console.log(error.cause);
+      console.groupEnd();
+    }
+    finally{
+      console.log("this runs regardless")
+    }
   </script>
 </body>
 
