@@ -69,20 +69,20 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
+      <button id="consoleLog">Console Log</button>
+      <button id="consoleError">Console Error</button>
+      <button id="consoleCount">Console Count</button>
+      <button id="consoleWarn">Console Warn</button>
+      <button id="consoleAssert">Console Assert</button>
+      <button id="consoleClear">Console Clear</button>
+      <button id="consoleDir">Console Dir</button>
+      <button id="consoleDirxml">Console dirxml</button>
+      <button id="consoleGroupStart">Console Group Start</button>
+      <button id="consoleGroupEnd">Console Group End</button>
+      <button id="consoleTable">Console Table</button>
+      <button id="consoleStartTimer">Start Timer</button>
+      <button id="consoleEndTimer">End Timer</button>
+      <button id="consoleTrace">Console Trace</button>
       <button>Trigger a Global Error</button>
     </section>
   </main>
@@ -101,7 +101,72 @@
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
-    // You may move this JS to another file if you wish
+    let logBtn = errorBtns[0];
+    let errorBtn = errorBtns[1];
+    let countBtn = errorBtns[2]; 
+    //count number of times a function has been called
+    let warnBtn = errorBtns[3];
+    let assertBtn = errorBtns[4];
+    let clearBtn = errorBtns[5];
+    let dirBtn = errorBtns[6];
+    let dirxmlBtn = errorBtns[7];
+    //creates a group collapsible console.group(name)
+    let groupStartBtn = errorBtns[8];
+    //finsllay stops the group here
+    let groupEndBtn = errorBtns[9];
+    let tableBtn = errorBtns[10];
+    let startTimerBtn = errorBtns[11];
+    let endTimerBtn = errorBtns[12];
+    let traceBtn = errorBtns[13];
+
+    logBtn.addEventListener("click", ()=>{
+      console.log("you clicked ont the console log button");
+    });
+    errorBtn.addEventListener("click", ()=>{
+      console.error("you clicked ont he error button");
+    });
+    countBtn.addEventListener("click", ()=>{
+      console.count("Button Pressed: "); 
+      //buttonpressed: 1, 2, 3 etc
+    });
+    warnBtn.addEventListener("click", ()=>{
+      console.warn("warning here")
+    });
+    assertBtn.addEventListener("click", ()=>{
+      let a = 1;
+      console.assert(a == 2, "Is a == 2");
+    });
+    clearBtn.addEventListener("click", ()=>{
+      console.clear();
+    });
+    dirBtn.addEventListener("click", ()=>{
+      console.dir(document.body);
+    });
+    dirxmlBtn.addEventListener("click", ()=>{
+      console.dirxml(form);
+    });
+    groupStartBtn.addEventListener("click", ()=>{
+      console.group("newgroupname"); 
+      //name doesnt matter?
+    });
+    groupEndBtn.addEventListener("click", ()=>{
+      console.groupEnd(); 
+      //closes most recnt group
+    });
+    tableBtn.addEventListener("click", ()=>{
+      console.table([1,2,3]);
+      //array objects or an array of objects
+    });
+    startTimerBtn.addEventListener("click", ()=>{
+      console.time("myTimer"); //can have several timers,
+      // // so need same label to end it
+    });
+    endTimerBtn.addEventListener("click", ()=>{
+      console.timeEnd("myTimer");
+    });
+    traceBtn.addEventListener("click",()=>{
+      console.trace("trace here"); //mesage needed here, for trace btn to work
+    });
   </script>
 </body>
 
